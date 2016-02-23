@@ -1,0 +1,36 @@
+﻿@model BasicMVC.Models.GuestResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+</head>
+<body>
+    @{
+        try {
+            WebMail.SmtpServer = "smtp.example.com";
+            WebMail.SmtpPort = 587;
+            WebMail.EnableSsl = true;
+            WebMail.UserName = "mySmtpUsername";
+            WebMail.Password = "mysmtpPassword";
+            
+        }
+        catch {
+        }
+    }
+    <div>
+        <h1>Thank you, @Model.Name!</h1>
+        @if (Model.WillAttend == true) {
+            @:It's great that you're coming. The drinks are already in the fridge.
+        } else {
+            @:Sorry to hear you can't make it, but thanks for letting us know.
+        }
+    </div>
+</body>
+</html>
